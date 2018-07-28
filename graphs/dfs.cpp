@@ -1,3 +1,4 @@
+/*Using DFS to detect the cycle in the graph*/
 #include <iostream>
 #include <list>
 using namespace std ;
@@ -11,6 +12,7 @@ public:
 	void addEdge(int u, int v) ;
 	void dfs(int s) ;
 	void dfs_util(int s, bool visited[], int parent[], int pre[], int post[]) ;
+	bool check_cycle(int pre[], int post[]) ;
 };
 
 Graph::Graph(int V){
@@ -26,7 +28,6 @@ void Graph::dfs_util(int s, bool visited[], int parent[], int pre[], int post[])
 	visited[s] = true ;
 	pre[s] = count ;
 	count++ ;
-	//cout<<"\tpre["<<s<<"]: "<<pre[s] ;
 	cout<<s<<endl ;
 	list<int>::iterator it;
 	for(it=adj[s].begin() ; it != adj[s].end() ; it++){
@@ -37,8 +38,23 @@ void Graph::dfs_util(int s, bool visited[], int parent[], int pre[], int post[])
 			count++ ;
 		}
 	}
-	//cout<<"post["<<s<<"] : "<<post[s]<<endl ;
+	post[s]=count ;
 }
+
+// returns true if the graph has any back edge
+bool Graph::check_cycle(int pre[], int post[]){
+	list<int>::iterator it ;
+	for(int i=0 ; i<V ; i++){
+		for(it=adj[i].begin() ; it!=adj[i].end() ; it++){
+			// check for back_edge
+			if(pre[*it]<=pre[i] && post[*it] >= post[i]){
+				return true ;
+			}
+		}
+	}
+	return false ;
+}
+
 void Graph::dfs(int s){
 	bool *visited = new bool[V] ;
 	int *parent = new int[V] ;
@@ -49,13 +65,19 @@ void Graph::dfs(int s){
 		visited[i] = false ;
 		parent[i] = -1 ;
 	}
-
+	cout<<"\n DFS : "<<endl ;
 	dfs_util(s,visited,parent,pre,post) ;
 
 	for(int i=0 ; i<V ; i++){
 		cout<<"\npre["<<i<<"] : "<<pre[i]<<"\tpost["<<i<<"] : "<<post[i]<<endl ;
 	}
+
+	if(check_cycle(pre,post))
+		cout<<"\n Cycle exist."<<endl ;
+	else
+		cout<<"\n Not cyclic"<<endl ;
 }
+
 int main(){
 	Graph g(4);
 	g.addEdge(0, 1);
@@ -65,10 +87,6 @@ int main(){
 	g.addEdge(2, 3);
 	g.addEdge(3, 3);
 	g.dfs(0);
-/*
-	for(int i=0 ; i<g.V ; i++){
-		cout<<"\npre["<<i<<"] : "<<pre[i]<<"\tpost["<<i<<"] : "<<post[i]<<endl ;
-	}
-*/
+
 	return 0 ;
 }
