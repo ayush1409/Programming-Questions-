@@ -50,13 +50,18 @@ int main(){
 	root->right = create_node(5) ;
 	root->left->right = create_node(-3) ;
 	root->right->left = create_node(6) ;
-	root->right->right = create_node(11) ;
+	root->right->right = create_node(11	) ;
 
 	bool result = root_to_leaf(root,26,path_nodes) ;
-	if(result)
-		cout<<"\n Path exists"<<endl ;
+	if(result){
+		cout<<"\n Path exists with nodes : " ;
+		vector<int>::reverse_iterator it ;
+		for(it=path_nodes.rbegin() ; it != path_nodes.rend() ; it++)
+			cout<<*it<<" " ;
+	}
 	else
 		cout<<"\n Path does not exist"<<endl ;
 
+	cout<<endl ;
 	return 0 ;
 }
