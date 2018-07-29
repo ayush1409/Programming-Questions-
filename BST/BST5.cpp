@@ -28,24 +28,12 @@ node* insert(node *root, int data){
 }
 
 node* find_lowest_common_ansestor(node *root,int data1, int data2){
-	while(true){
-		if(root == NULL)
-			return root ;
-		if((data1 <= root->data <= data2) |(data2 <= root->data <= data1))
-			return root ;
-		if(data1 < data2){
-			if(root->data < data1)
-				root = root->right ;
-			else if(root->data > data2)
-				root = root->left ;
-		}
-		else if(data1 > data2){
-			if(root->data < data2)
-				root = root->right ;
-			else if(root->data > data1)
-				root = root->left ;
-		}
-	}
+	if(root->data > max(data1, data2))
+		root->left = find_lowest_common_ansestor(root->left, data1, data2) ;
+	else if(root->data < max(data1, data2))
+		root->right = find_lowest_common_ansestor(root->right, data1, data2) ;
+	else
+		return root ;
 }
 
 void print_inorder(node *root){
