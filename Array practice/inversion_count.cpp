@@ -14,8 +14,8 @@ int inversion_count_merge(int arr[], int l, int mid, int r){
 		arr1[i] = arr[l+i] ;
 	for(int i=0 ; i<n2 ; i++)
 		arr2[i] = arr[mid+i] ;
-
-	/*for(int i=0 ; i<n1 ; i++)
+/*
+	for(int i=0 ; i<n1 ; i++)
 		cout<<arr1[i]<<" " ;
 
 	cout<<endl ;
@@ -37,14 +37,15 @@ int inversion_count_merge(int arr[], int l, int mid, int r){
 		}
 		else if(arr1[i] >= arr2[j]){
 			arr[k] = arr2[j] ;
-			j++ ;
 			count += n1-i+1 ;
+			j++ ;
 		}
 		k++ ;
 	}
 	while(i<n1){
 		arr[k] = arr1[i] ;
 		i++ ; k++ ;
+		//count += n2-j ;
 	}
 	while(j<n2){
 		arr[k] = arr2[j] ;
@@ -55,20 +56,19 @@ int inversion_count_merge(int arr[], int l, int mid, int r){
 }
 
 int inversion_count(int arr[], int l, int r){
-	int count=0 ;
+
 	if(l<r){
 		int mid = l + (r-l)/2 ;
 
 		inversion_count(arr,l,mid) ;
 		inversion_count(arr,mid+1,r) ;
-		count = inversion_count_merge(arr,l,mid,r) ;
-		return count ;
+		return inversion_count_merge(arr,l,mid,r) ; ;
 	}
-	return count ;
+	return 0 ;
 }
 
 int main(){
-	int arr[] = {3,1,4,5,1,2,0} ;
+	int arr[] = {3,4,5,1,2} ;
 	int n = sizeof(arr)/sizeof(arr[0]) ;
 	int count = inversion_count(arr,0,n-1) ;
 
