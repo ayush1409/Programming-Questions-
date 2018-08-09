@@ -34,3 +34,5 @@ int main(){
 	triplet_sum_x(ar,n,x) ;
 	return 0 ;
 }
+
+/* output is not same as suppose to */
