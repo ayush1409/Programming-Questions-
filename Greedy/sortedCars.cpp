@@ -9,12 +9,20 @@ class Car{
 		public:
 			//string name ;
 			pair<int,int> location ;
+		//Car(int x, int y){
+		//		this -> location = make_pair(x,y) ;
+		//	}
+			
+		int distance(){
+			int x,y ;
+			x = (this -> location).first ;
+			y = (this -> location).second ;
+				return x*x + y*y ;
+			}
 	};
 
 bool compare(Car a, Car b){
-	float x = a.location.first*a.location.first + a.location.second*a.location.second ;
-	float y = b.location.first*b.location.first + b.location.second*b.location.second ;
-	return x<y ;
+	return a.distance() < b.distance() ;
 }
 
 int main(){
