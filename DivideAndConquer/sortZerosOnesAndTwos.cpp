@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+
+ // } Driver Code Ends
+
+class Solution
+{
+    public:
+    void sort012(int a[], int n)
+    {
+        // coode here 
+        
+        // using counting sort
+        
+        vector<int> v(3) ;
+        //int n = sizeof(a)/sizeof(a[0]);
+        
+        for(int i=0 ; i<n ; i++){
+            v[a[i]]++ ;
+        }
+        
+        /*for(int i=1 ; i<n ; i++){
+            v[i] += v[i-1] ;
+        }
+        */
+        int i=0 ;
+        while(v[0]--){
+            a[i]=0 ;
+            i++ ;
+        }
+        while(v[1]--){
+            a[i]=1 ;
+            i++ ;
+        }
+        while(v[2]--){
+            a[i]=2 ;
+            i++ ;
+        }
+    }
+    
+};
+
+// { Driver Code Starts.
+int main() {
+
+    int t;
+    cin >> t;
+
+    while(t--){
+        int n;
+        cin >>n;
+        int a[n];
+        for(int i=0;i<n;i++){
+            cin >> a[i];
+        }
+
+        Solution ob;
+        ob.sort012(a, n);
+
+        for(int i=0;i<n;i++){
+            cout << a[i]  << " ";
+        }
+
+        cout << endl;
+        
+        
+    }
+    return 0;
+}
+
+  // } Driver Code Ends
