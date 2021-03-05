@@ -22,7 +22,7 @@ void printCombs(int a[], int buffer[], int startIndex, int bufferIndex){
 	}
 	
 	// when all the combinations are printed, terminate
-	if(startIndex == n-1){
+	if(startIndex == n){
 		return ;
 	}
 	
