@@ -6,11 +6,11 @@ public:
         int minSoFar = INT_MAX, maxTradeI, maxTrade = 0 ;
         
         for(int i = 0 ; i < prices.size() ; i++){
-            minSoFar = min(prices[i], minSoFar) ;
-            maxTradeI = prices[i] - minSoFar ;
+            minSoFar = min(prices[i], minSoFar) ;	// keep track of min price encountered so far
+            maxTradeI = prices[i] - minSoFar ;		// calculate trade for the current price
             
             if(maxTradeI > maxTrade)
-                maxTrade = maxTradeI ;
+                maxTrade = maxTradeI ;				// update the maxTrade accordingly
         }
         
         return maxTrade ;
