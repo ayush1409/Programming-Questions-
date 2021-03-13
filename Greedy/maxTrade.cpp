@@ -12,7 +12,6 @@ public:
             if(maxTradeI > maxTrade)
                 maxTrade = maxTradeI ;				// update the maxTrade accordingly
         }
-        
         return maxTrade ;
     }
 };

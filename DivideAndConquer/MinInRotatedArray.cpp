@@ -1,5 +1,6 @@
 // Find the minimum in sorted-rotated array
 // Expected time = O(logn) and expected space = O(1) 
+
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std ;
@@ -17,7 +18,9 @@ int minElement(int arr[], int n){
 		else
 			high = mid - 1 ;
 	}
+	
 }
+
 int main(){
 	
 	int arr[] = {6,7,8,9,1,2,3} ; 
