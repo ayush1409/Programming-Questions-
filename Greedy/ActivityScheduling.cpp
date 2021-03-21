@@ -25,7 +25,7 @@ int main(){
 				activity[i].second = end ;
 			}
 			
-			
+			// sort the activities by their finish time in non decreasing order
 			sort(activity.begin(), activity.end(), compare) ;
 			
 //			for(auto x : activity)

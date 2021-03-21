@@ -9,6 +9,7 @@ int main(){
 	int pivot=4;
 	int low=0, high=n-1, i=0 ;
 	
+	// Partition <=pivot | actual pivot | greater then pivot
 	while(i <= high){
 		if(arr[i] < pivot){
 			swap(arr[i], arr[low]) ;
